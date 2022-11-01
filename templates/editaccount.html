@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <head>
+        <title>Edit Account</title>
+        <meta charset = "UTF-8">
+        <style>
+            body {
+                background-color: #e7ffff26;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .header {
+                overflow: hidden;
+                margin: 0px;
+                background-color: #95c7cb;
+                padding: 0px 0px;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                left:0;
+            }
+            .header ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            .header .block {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 25px 25px;
+                float: right;
+                text-decoration: none;
+                font-size: 22px;
+            }
+            .header .logo {
+                color: rgb(16, 92, 113);
+                font-weight: bold;
+                text-decoration: none;
+                float: left;
+                font-size: 35px;
+                padding: 16px 40px;
+            }
+            .header li a:hover:not(.logo) {
+                background-color: rgb(98, 168, 169);
+                color: black;
+            }
+            .form {
+                padding: 80px;
+                margin-top: 50px;
+                font-size: 20px;
+                min-height: 100%;
+                color: #004c70;
+                text-align: center;
+            }
+            .form .forminput {
+                margin-bottom: 12px;
+                padding-left: 10px;
+                font-size: 20px;
+                height: 30px;
+                width: 25%; 
+                border-radius: 10px
+            }
+            .form .btn {
+                color: #fff;
+                background-color: #004c70;
+                border: none;
+                border-radius: 5px;
+                font-size: 20px;
+                height: 30px;
+                width: 20%; 
+            }
+            .form .btn:hover {
+                background-color: #005f8b;
+                border-color: #005f8b;
+            }
+            .form .btn a {
+            	color: white;
+            	text-decoration: None;
+            }
+            .form label {
+                display: inline-block;
+                width: 100px;
+                padding-right: 30px;
+            }
+            .form .forminput{
+                display: inline-block;
+                width: 300px;
+                height: 30px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 20px;
+                border-radius: 10px;
+            }
+            .form .ex{
+                display: inline-block;
+                width: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" style="color:#ffffff">
+            <ul>
+                <li><a class = "logo" href="{{url_for('home',username=username)}}">Welcome, {{username}}!</a></li>
+                <li><a class = "block" href="{{url_for('logout')}}">Log out </a></li>
+                <li><a class = "block" href="{{url_for('summary',username=username)}}">Summary </a></li> 
+                <li><a class = "block" href="{{url_for('home',username=username)}}">Home</a></li> 
+            </ul>
+        </div>
+        <div class="form">
+            <h3>Edit Account Details</h3>
+                <form action= "{{url_for('editaccount',username=username, user=user)}}" method = "POST" id = "card-form">
+                    <label>Username: </label>
+                    <input type="text" name="username" class = "forminput" value = "{{username}}" readonly /> <br>
+                    <label>Email ID: </label>
+                    <input type="text" name="email" class = "forminput" value = "{{user['EmailID']}}" /> <br>
+                    <label>Password: </label>
+                    <input type="text" name="password" class = "forminput" value = "{{user['Password']}}" required /> <br>                  
+                    <input type="submit" id = "submit" class = "btn" value="Submit" />
+                    <button class = "btn"><a href="{{url_for('account',username=username)}}">Cancel</a></button>
+                </form> 
+                	
+        </div>
+    </body>
+</html>

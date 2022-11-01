@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+    <head>
+        <title>Delete List</title>
+        <meta charset = "UTF-8">
+        <style>
+            body {
+                background-color: #e7ffff26;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .header {
+                overflow: hidden;
+                margin: 0px;
+                background-color: #95c7cb;
+                padding: 0px 0px;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                left:0;
+            }
+            .header ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            .header .block {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 25px 25px;
+                float: right;
+                text-decoration: none;
+                font-size: 22px;
+            }
+            .header .logo {
+                color: rgb(16, 92, 113);
+                font-weight: bold;
+                text-decoration: none;
+                float: left;
+                font-size: 35px;
+                padding: 16px 40px;
+            }
+            .header li a:hover:not(.logo) {
+                background-color: rgb(98, 168, 169);
+                color: black;
+            }
+            .info {
+                padding: 100px;
+                margin-top: 80px;
+                font-size: 20px;
+                min-height: 100%;
+                color: #004c70;
+                text-align: center;
+            }
+            .btn {
+                display: inline-block;
+                border: none;
+                font-size: 20px;
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                background-color: #004c70;
+                color: white;
+                font-family: inherit;
+                border-radius: 10px;
+            }
+            .btn a{
+                color: white;
+                text-decoration: none;
+            }
+            .btn:hover {
+                background-color: #005f8b;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="header" style="color:#ffffff">
+            <ul>
+                <li><a class = "logo" href="{{url_for('home',username=username)}}">Welcome, {{username}}!</a></li>
+                <li><a class = "block" href="{{url_for('logout')}}">Log out </a></li>
+                <li><a class = "block" href="{{url_for('account',username=username)}}">Account </a></li>
+                <li><a class = "block" href="{{url_for('summary',username=username)}}">Summary </a></li> 
+            </ul>
+        </div>
+        <div class="info">
+            <h3>Delete List</h3>
+            <div class="txt">Would you like to delete all the cards in {{listname}} or move the cards to different lists?</div>
+            <br>
+            <div class="buttons">
+                <button class="btn"><a href="{{url_for('deletelistandcards',username=username,listid=listid)}}">Delete all cards</a></button>
+                <button class="btn"><a href="{{url_for('movecards',username=username, listid=listid)}}">Move the cards</a></button>
+                <button class="btn"><a href="{{url_for('home',username=username)}}">Cancel</a></button>
+            </div>
+        </div>
+
+
+    </body>
+</html>

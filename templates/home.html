@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+    <head>
+        <title>Kanban Board</title>
+        <meta charset = "UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body {
+                background-color: #e7ffff26;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .header {
+                overflow: hidden;
+                margin: 0px;
+                background-color: #95c7cb;
+                padding: 0px 0px;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                left:0;
+            }
+            .header ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            .header .block {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 25px 25px;
+                float: right;
+                text-decoration: none;
+                font-size: 22px;
+            }
+            .header .logo {
+                color: rgb(16, 92, 113);
+                font-weight: bold;
+                text-decoration: none;
+                float: left;
+                font-size: 35px;
+                padding: 16px 40px;
+            }
+            .header li a:hover:not(.logo) {
+                background-color: rgb(98, 168, 169);
+                color: black;
+            }
+            .info {
+                padding-top: 50px;
+                padding-left: 20px;
+                padding-right: 20px;
+                margin-top: 20px;
+                font-size: 22px;
+                color: #004c70;
+                text-align: center;
+            }
+            .info .addbtn a{
+                text-decoration: none;
+                background-color: #95c7cb;
+                color: #004c70;
+                padding: 1px 20px;
+                border-radius: 50%;
+                font-size: 60px;
+            }
+            .info .addbtn a:hover {
+                background-color: rgb(98, 168, 169);
+            }
+            .info .list {
+                padding-left: 20px;
+                padding-right: 20px;
+                margin: 10px;
+                text-align: center;
+                display: block;
+                background-color: #d7ecee;
+                min-height: 500px;
+                width: 300px;
+                border-radius: 10px;
+            }
+            .info .list:hover {
+                border-style:solid;
+                background-color: rgb(224, 242, 244);
+                border-color: #92bcbe;
+            }
+            .info .list .date {
+                font-size: 15px;
+                color: rgb(94, 97, 113);
+                padding: 10px;
+            }
+            .info .list .listname {
+                padding: 10px;
+                text-align: center;
+                display:block;
+                border-radius: 10px;
+                background-color: #72caca9c;
+                border: none;
+                font-size: 20px;
+            }
+            .info .list .listname .listbtn {
+                font-size: 25px;
+                margin: 0;
+                border: none;
+                background-color:  #72caca00;
+                font-weight: bold;
+                color:#004c70;
+                font-family: inherit;
+            }
+            .info .list .listname .listdropdown {
+                display: none;
+                position: absolute;
+                background-color: white;
+                border-radius: 10px;
+                min-width: 200px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            } 
+            .info .list .listname .listdropdown a {
+                float:none;
+                color: black;
+                padding: 5px;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+            }
+            .info .list .listname:hover .listdropdown {
+                display: block;
+            }
+            .info .list .listname .listdropdown a:hover {
+                background-color: #a8e9e99c;
+            }
+            .desc {
+            	margin: 10px;
+            	font-size: 18px;
+            }
+            .info .list .card {
+                margin-top: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 10px;
+                width: 230px;
+                display: block;
+                background-color: white;
+                border-radius: 10px;
+            }
+            .info .list .card:hover {
+                border-style:solid;
+                border-color: rgb(199, 199, 199);
+            }
+            .info .list .ccard {
+                margin-top: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 10px;
+                width: 230px;
+                display: block;
+                background-color: rgb(229, 255, 240);
+                border-radius: 10px;
+            }
+            .info .list .ccard:hover {
+                border-style:solid;
+                border-color: rgb(178, 213, 191);
+            }
+            .info .list .ccard .complete {
+                font-size: 20px;
+                color: rgb(0, 81, 0);
+            }
+            .info .list .cardname {
+                padding: 10px;
+                margin-top: 5px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 20px;
+                color: #004c70;
+                width: 220px;
+                border-radius: 10px;
+                text-align: center;
+            }
+            .info .list .cardname .carddropdown {
+                display: none;
+                position: absolute;
+                background-color: white;
+                border-radius: 10px;
+                min-width: 200px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+            .info .list .cardname:hover .carddropdown {
+                display: block;
+            }
+            .info .list .cardname .carddropdown a{
+                float: none;
+                color: black;
+                padding: 5px;
+                font-size: 18px;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+            }
+            .info .list .card .cardname .carddropdown a:hover{
+                background-color: #dbdbdb;
+            }
+            .info .list .ccard .cardname .carddropdown a:hover{
+                background-color: #d4e8dd;
+            }
+            /*
+            .info .list .card .cardname:hover {
+                border-style:solid;
+                width: 220px;
+                border-color: #004c70;
+                border-radius: 10px;
+                margin: 5px;
+            }*/
+            .info .list .content {
+                color: black;
+                font-size: 18px;
+                padding: 10px;
+            }
+            .info .list .addbtn {
+                margin-top: 10px;
+            }
+            .info table tr {
+                vertical-align: top;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" style="color:#ffffff">
+            <ul>
+                <li><a class = "logo" href="{{url_for('home',username=username)}}">Welcome, {{username}}!</a></li>
+                <li><a class = "block" href="{{url_for('logout')}}">Log out </a></li>
+                <li><a class = "block" href="{{url_for('account',username=username)}}">Account </a></li>
+                <li><a class = "block" href="{{url_for('summary',username=username)}}">Summary </a></li>
+            </ul>
+        </div>
+        <div class="info">
+            <p>
+                <div class="addbtn">
+                    <a href="{{url_for('addlist',username=username)}}">+</a> <strong>Add a list   </strong>           
+                </div>
+            </p>
+            
+            <table>
+                <tr>
+                    {% for list in lists %}
+                        <td>
+                            <div class="list">
+                                <div class="date">Created: {{list["Created_time"]}} </div>
+                                <div class="listname">
+                                    <button class="listbtn">
+                                        {{list["Name"]}}
+                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="listdropdown">
+                                        <a href="{{url_for('editlist',listid=list['ListID'],username=username)}}">Edit</a>
+                                        <a href="{{url_for('deletelist',listid=list['ListID'],username=username)}}">Delete</a>
+                                    </div>
+                                </div>  
+                                <div class="desc">
+                                	{{list['Description']}}
+                                </div>                          
+                                <table>
+                                    
+                                    {% for card in dcards %}
+                                        {% if card['ListID'] == list['ListID'] %}
+                                    
+                                            <tr >
+                                                <div class="card">
+                                                    <div class="cardname">
+                                                        <div class="cardbtn">
+                                                            {{card['Title']}}
+                                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="carddropdown">
+                                                            <a href="{{url_for('editcard',username=username,cardid=card['CardID'])}}">Edit</a>
+                                                            <a href="{{url_for('deletecard',username=username,cardid=card['CardID'])}}">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        {{card["Content"]}}
+                                                    </div>
+                                                    <div class="date">
+                                                        Created: {{card['Created_time']}} <br>
+                                                        Last Updated: {{card['Last_updated_time']}} <br>
+                                                        Deadline: {{card['Deadline']}}
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% for card in ccards %}
+                                        {% if card['ListID'] == list['ListID'] %}
+                                            <tr >
+                                                <div class="ccard">
+                                                    <div class="cardname">
+                                                        <div class="cardbtn">
+                                                            {{card['Title']}}
+                                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                        </div>
+                                                        <div class="carddropdown">
+                                                            <a href="{{url_for('editcard',username=username,cardid=card['CardID'])}}">Edit</a>
+                                                            <a href="{{url_for('deletecard',username=username,cardid=card['CardID'])}}">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        {{card["Content"]}}
+                                                    </div>
+                                                    <div class="complete">
+                                                        &#10004; Completed
+                                                    </div>
+                                                    <div class="date">
+                                                        Created: {{card['Created_time']}} <br>
+                                                        Last Updated: {{card['Last_updated_time']}} <br>
+                                                        Completed: {{card['Completed_time']}}
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    
+                                </table>
+                                <div class="addbtn">
+                                    <a href="{{url_for('addcard',username=username, listid = list['ListID'])}}">+</a>
+                                    Add a card
+                                </div>
+                                <br>
+                            </div>
+                        </td>
+                    {% endfor %}
+                    
+                </tr>
+            </table>
+            
+        </div>
+    </body>
+</html>

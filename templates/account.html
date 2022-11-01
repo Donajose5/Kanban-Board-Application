@@ -1,0 +1,116 @@
+<DOCTYPE html>
+    <head>
+        <title>Account Details</title>
+        <meta charset = "UTF-8">
+        <style>
+            body {
+                background-color: #e7ffff26;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                margin-left: 0;
+                margin-bottom: 0;
+            }
+            .header {
+                overflow: hidden;
+                margin: 0px;
+                background-color: #95c7cb;
+                padding: 0px 0px;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                left:0;
+            }
+            .header ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            .header .block {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 25px 25px;
+                float: right;
+                text-decoration: none;
+                font-size: 22px;
+            }
+            .header .logo {
+                color: rgb(16, 92, 113);
+                font-weight: bold;
+                text-decoration: none;
+                float: left;
+                font-size: 35px;
+                padding: 16px 40px;
+            }
+            .header li a:hover:not(.logo) {
+                background-color: rgb(98, 168, 169);
+                color: black;
+            }
+            .info {
+                padding: 100px;
+                margin-top: 80px;
+                font-size: 20px;
+                min-height: 100%;
+                color: #004c70;
+                text-align: center;
+            }
+            .btn1 {
+                display: inline-block;
+                border: none;
+                font-size: 20px;
+                width: 300px;
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                background-color: #004c70;
+                color: white;
+                font-family: inherit;
+                border-radius: 10px;
+                margin: 5px;
+            }
+            .btn2 {
+                display: inline-block;
+                border: none;
+                font-size: 20px;
+                width: 300px;
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                background-color: #ab0000;
+                color: white;
+                font-family: inherit;
+                border-radius: 10px;
+                margin: 5px;
+            }
+            .btn1 a, .btn2 a{
+                color: white;
+                text-decoration: none;
+            }
+            .btn1:hover {
+                background-color: #005f8b;
+            }
+            .btn2:hover {
+                background-color: #e10000;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" style="color:#ffffff">
+            <ul>
+                <li><a class = "logo" href="{{url_for('home',username=username)}}">Welcome, {{username}}!</a></li>
+                <li><a class = "block" href="{{url_for('logout')}}">Log out </a></li>
+                <li><a class = "block" href="{{url_for('summary',username=username)}}">Summary </a></li> 
+                <li><a class = "block" href="{{url_for('home',username=username)}}">Home</a></li>
+            </ul>
+        </div>
+        <div class="info">
+            <h3>Account Details</h3>
+            <div class="details">
+            Username: {{user['Username']}} <br>
+            Email ID: {{user['EmailID']}}
+            </div><br>
+            <button class="btn1"><a href = "{{url_for('editaccount',username=username)}}">Edit Account Details</a></button>
+            <br>
+            <button class="btn2"><a href = "{{url_for('deleteaccount',username=username)}}">Delete Account</a></button>
+        </div>
+    </body>
+</html>
