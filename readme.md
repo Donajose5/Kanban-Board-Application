@@ -2,11 +2,11 @@
 
 This project is a simple Kanban Board which allows the user to create lists and cards, edit and delete them.
 
-Built using
+## Built using
 - Flask Framework
 - Jinja2 for html file generation
 
-Local Development run
+## Local Development run
 - Create a Virtual Environment using 
 	`python3 -m venv .project-env`
 	`source .project-env/bin/activate`
@@ -15,12 +15,12 @@ Local Development run
 - Run the main file using
 	`python main.py`
 
-Replit run
+## Replit run
 - Go to shell and run
     `pip install --upgrade poetry`
 - Click on `main.py` and click button run
 
-Folder Structure
+## Folder Structure
 - `application` - where the application code is placed
 - `static` - the default static files folder. Images are saved here
 - `templates` - default flask templates folder
