@@ -1,4 +1,4 @@
-Kanban Board Application
+# Kanban Board Application
 
 This project is a simple Kanban Board which allows the user to create lists and cards, edit and delete them.
 
